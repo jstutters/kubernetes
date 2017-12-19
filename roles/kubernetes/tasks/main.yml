@@ -53,6 +53,12 @@
     name: docker
     state: installed
 
+- name: docker config
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: '0644'
+
 - name: activate docker
   service:
     name: docker
