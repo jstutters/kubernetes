@@ -1,0 +1,16 @@
+---
+- name: hosts file
+  copy:
+    src: hosts
+    dest: /etc/hoss
+    mode: '0644'
+
+- name: install libselinux-python
+  package:
+    name: libselinux-python
+    state: latest
+
+- name: install vim
+  package:
+    name: vim-enhanced
+    state: latest

@@ -1,0 +1,7 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.0.2.5    kubemaster.local
+10.0.2.6    kubenode01.local
+10.0.2.8    kubenode02.local
+10.0.2.7    kubenode03.local
+

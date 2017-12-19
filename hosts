@@ -1,0 +1,5 @@
+[servers]
+kubemaster ansible_host=10.0.2.5
+kubenode01 ansible_host=10.0.2.6
+kubenode02 ansible_host=10.0.2.8
+kubenode03 ansible_host=10.0.2.7

@@ -1,0 +1,95 @@
+---
+- name: open kubernetes api server port
+  firewalld:
+    port: 6443/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open etcd api server client API port
+  firewalld:
+    port: 2379-2380/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open kubelet API port
+  firewalld:
+    port: 10250/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open kube-scheduler port
+  firewalld:
+    port: 10251/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open kube-controller-manager API port
+  firewalld:
+    port: 10252/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open read-only kubelet API port
+  firewalld:
+    port: 10255/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: open read-only kubelet API port
+  firewalld:
+    port: 30000-32767/tcp
+    permanent: true
+    state: enabled
+    immediate: true
+
+- name: docker config
+  copy:
+    name: /etc/docker/daemon.json
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: '0644'
+
+- name: install docker
+  package:
+    name: docker
+    state: installed
+
+- name: activate docker
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: kubernetes repository
+  yum_repository:
+    name: kubernetes
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    enabled: true
+    gpgcheck: true
+    repo_gpgcheck: true
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+- name: disable selinux
+  selinux:
+    state: disabled
+
+- name: install kubelet
+  package:
+    name: kubelet
+    state: installed
+
+- name: install kubeadm
+  package:
+    name: kubeadm
+    state: installed
+
+- name: install kubectl
+  package:
+    name: kubectl
+    state: installed
