@@ -93,3 +93,9 @@
   package:
     name: kubectl
     state: installed
+
+- name: activate kubelet
+  service:
+    name: kubelet
+    state: started
+    enabled: true
