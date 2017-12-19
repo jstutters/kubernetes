@@ -48,17 +48,16 @@
     state: enabled
     immediate: true
 
-- name: docker config
-  copy:
-    name: /etc/docker/daemon.json
-    src: daemon.json
-    dest: /etc/docker/daemon.json
-    mode: '0644'
-
 - name: install docker
   package:
     name: docker
     state: installed
+
+- name: docker config
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: '0644'
 
 - name: activate docker
   service:
