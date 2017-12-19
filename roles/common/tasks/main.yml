@@ -2,7 +2,7 @@
 - name: hosts file
   copy:
     src: hosts
-    dest: /etc/hoss
+    dest: /etc/hosts
     mode: '0644'
 
 - name: install libselinux-python
